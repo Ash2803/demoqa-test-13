@@ -3,10 +3,6 @@ package test;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -28,21 +24,20 @@ public class FormTest {
         open("/automation-practice-form");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
-        $("[id = firstName").setValue(name);
-        $("[id = lastName]").setValue(lastName);
-        $("[id = userEmail]").setValue(userEmail);
+        $("#firstName").setValue(name);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(userEmail);
         $("#genterWrapper").$(byText("Male")).click();
-        $("[id = userNumber]").setValue("1234567890");
-        $("[id = dateOfBirth]").click();
+        $("#userNumber").setValue("1234567890");
+        $("#dateOfBirth").click();
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("April");
         $(".react-datepicker__year-select").selectOption("1993");
         $(byText("28")).click();
-        $(byText("Reading")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#subjectsInput").sendKeys("E");
         $(byText("English")).click();
-        $("#uploadPicture").uploadFile(new File("C:\\Users\\Ash\\Desktop\\demoqa-test-13\\" +
-                "src\\recources\\image.jpg"));
+        $("#uploadPicture").uploadFromClasspath("image.jpg");
         $("#currentAddress").setValue(address1);
         $("#state").click();
         $(byText("Rajasthan")).click();
